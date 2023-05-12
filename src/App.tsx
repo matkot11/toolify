@@ -1,5 +1,7 @@
+import MainTemplate from "@/templates/MainTemplate.tsx";
+
 const App = () => {
-  return <></>;
+  return <MainTemplate></MainTemplate>;
 };
 
 export default App;
