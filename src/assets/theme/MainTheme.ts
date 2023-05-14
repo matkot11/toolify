@@ -23,6 +23,20 @@ export const theme = {
     font18: "1.125rem",
     font20: "1.25rem",
     font24: "1.5rem",
+    font40: "2.5rem",
     font50: "3.125rem"
+  },
+  space: {
+    space2: "0.125rem",
+    space4: "0.25rem",
+    space8: "0.5rem",
+    space12: "0.75rem",
+    space16: "1rem",
+    space18: "1.125rem",
+    space20: "1.25rem"
+  },
+  breakpoint: {
+    tablet: "700px",
+    desktop: "1200px"
   }
 };
