@@ -2,6 +2,7 @@ export const theme = {
   color: {
     black: "#000000",
     white: "#ffffff",
+    gray: "#717171",
     blue: "#006CBB",
     green: "#36C982",
     red: "#EB2424"
@@ -33,7 +34,8 @@ export const theme = {
     space12: "0.75rem",
     space16: "1rem",
     space18: "1.125rem",
-    space20: "1.25rem"
+    space20: "1.25rem",
+    space24: "1.5rem"
   },
   breakpoint: {
     tablet: "700px",

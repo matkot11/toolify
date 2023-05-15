@@ -6,8 +6,8 @@ export const InputWrapper = styled.input`
   align-self: center;
   width: 90%;
   font-size: ${({ theme }) => theme.fontSize.font18};
-  border-radius: 20px;
   border: 1px solid ${({ theme }) => theme.color.black};
+  border-radius: 5px;
 
   &:focus {
     outline: 2px solid ${({ theme }) => theme.color.blue};

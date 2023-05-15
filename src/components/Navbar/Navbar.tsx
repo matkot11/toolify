@@ -4,6 +4,8 @@ import HamburgerMenu from "@/components/HamburgerMenu/HamburgerMenu.tsx";
 import { NavLink } from "react-router-dom";
 import { animateDropdownCategories } from "@/assets/animations/categoriesDropdownAnimation.ts";
 import { categories } from "@/data/categories.ts";
+import { auth } from "@/firebase";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -36,6 +38,15 @@ const Navbar = () => {
     };
   }, [handleCloseCategoriesOnClickOutside]);
 
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      handleNavbar();
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <nav>
       <HamburgerMenu className="navbar__menu" onClick={handleNavbar} isNavbarOpen={isNavbarOpen} />
@@ -66,16 +77,26 @@ const Navbar = () => {
               ))}
             </NavbarCategories>
           </li>
-          <li>
-            <NavLink to="/sign-in" onClick={handleNavbar} className="navbar__item">
-              SIGN IN
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/sign-up" onClick={handleNavbar} className="navbar__item">
-              SIGN UP
-            </NavLink>
-          </li>
+          {auth.currentUser ? (
+            <li>
+              <button onClick={handleSignOut} className="navbar__item">
+                SIGN OUT
+              </button>
+            </li>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/sign-in" onClick={handleNavbar} className="navbar__item">
+                  SIGN IN
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/sign-up" onClick={handleNavbar} className="navbar__item">
+                  SIGN UP
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </NavbarMenu>
     </nav>
