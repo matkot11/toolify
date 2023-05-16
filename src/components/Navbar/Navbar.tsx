@@ -6,10 +6,12 @@ import { animateDropdownCategories } from "@/assets/animations/categoriesDropdow
 import { categories } from "@/data/categories.ts";
 import { auth } from "@/firebase";
 import { signOut } from "firebase/auth";
+import { useSnackbar } from "@/hooks/useSnackbar.tsx";
 
 const Navbar = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const { dispatchSnackbar } = useSnackbar();
   const categoriesRef = useRef<HTMLUListElement>(null);
   const categoriesButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -42,8 +44,9 @@ const Navbar = () => {
     try {
       await signOut(auth);
       handleNavbar();
+      dispatchSnackbar("Successfully signed out", "success");
     } catch (error: any) {
-      console.log(error.message);
+      dispatchSnackbar(error.message, "error");
     }
   };
 

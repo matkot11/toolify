@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormikInput from "@/components/FormikInput/FormikInput.tsx";
+import { useSnackbar } from "@/hooks/useSnackbar.tsx";
 
 interface SignUpFormValues {
   fullName: string;
@@ -15,6 +16,7 @@ interface SignUpFormValues {
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const { dispatchSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues: SignUpFormValues = {
@@ -74,12 +76,13 @@ const SignUp = () => {
           displayName: values.fullName
         });
       } else {
-        console.log("Could not set the name");
+        dispatchSnackbar("Could not set the name", "error");
       }
 
+      dispatchSnackbar("Successfully signed up", "success");
       return navigate("/");
     } catch (error: any) {
-      console.log(error.message);
+      dispatchSnackbar(error.message, "error");
     } finally {
       setIsLoading(false);
     }

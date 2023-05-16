@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormikInput from "@/components/FormikInput/FormikInput.tsx";
+import { useSnackbar } from "@/hooks/useSnackbar.tsx";
 
 interface SignInFormValues {
   email: string;
@@ -13,6 +14,7 @@ interface SignInFormValues {
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const { dispatchSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues: SignInFormValues = {
@@ -46,9 +48,11 @@ const SignIn = () => {
     try {
       setIsLoading(true);
       await signInWithEmailAndPassword(auth, values.email, values.password);
+
+      dispatchSnackbar("Successfully signed in", "success");
       return navigate("/");
     } catch (error: any) {
-      console.log(error.message);
+      dispatchSnackbar(error.message, "error");
     } finally {
       setIsLoading(false);
     }
