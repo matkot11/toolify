@@ -1,9 +1,10 @@
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import { SignUpForm, SignUpWrapper } from "@/views/SignUp/SignUp.styled.ts";
 import { auth } from "@/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FormikInput from "@/components/FormikInput/FormikInput.tsx";
 
 interface SignUpFormValues {
   fullName: string;
@@ -48,6 +49,10 @@ const SignUp = () => {
       errors.password = "Password is required";
     }
 
+    if (values.password.length < 6) {
+      errors.password = "Password should be at least 6 characters";
+    }
+
     if (!values.confirmPassword) {
       errors.confirmPassword = "Confirmation password is required";
     }
@@ -86,44 +91,32 @@ const SignUp = () => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={handleValidation}>
         {({ errors, touched, isValidating }) => (
           <SignUpForm>
-            <label className="sign-up__label" htmlFor="firstName">
-              Full Name
-              <Field className="sign-up__input" name="fullName" placeholder="Full Name" />
-              {errors.fullName && touched.fullName && (
-                <span className="sign-up__error">{errors.fullName}</span>
-              )}
-            </label>
-            <label className="sign-up__label" htmlFor="email">
-              Email
-              <Field className="sign-up__input" name="email" placeholder="Email" />
-              {errors.email && touched.email && (
-                <span className="sign-up__error">{errors.email}</span>
-              )}
-            </label>
-            <label className="sign-up__label" htmlFor="password">
-              Password
-              <Field
-                type="password"
-                className="sign-up__input"
-                name="password"
-                placeholder="Password"
-              />
-              {errors.password && touched.password && (
-                <span className="sign-up__error">{errors.password}</span>
-              )}
-            </label>
-            <label className="sign-up__label" htmlFor="confirmPassword">
-              Confirm Password
-              <Field
-                type="password"
-                className="sign-up__input"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-              />
-              {errors.confirmPassword && touched.confirmPassword && (
-                <span className="sign-up__error">{errors.confirmPassword}</span>
-              )}
-            </label>
+            <FormikInput
+              name="fullName"
+              labelName="Full Name"
+              errorMessage={errors.fullName}
+              touched={touched.fullName}
+            />
+            <FormikInput
+              name="email"
+              labelName="Email"
+              errorMessage={errors.email}
+              touched={touched.email}
+            />
+            <FormikInput
+              name="password"
+              labelName="Password"
+              type="password"
+              errorMessage={errors.password}
+              touched={touched.password}
+            />
+            <FormikInput
+              name="confirmPassword"
+              labelName="Confirm Password"
+              type="password"
+              errorMessage={errors.confirmPassword}
+              touched={touched.confirmPassword}
+            />
             <button disabled={isValidating || isLoading} className="sign-up__button" type="submit">
               Sign Up
             </button>
