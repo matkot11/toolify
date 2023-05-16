@@ -1,9 +1,10 @@
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import { SignUpForm, SignUpWrapper } from "@/views/SignUp/SignUp.styled.ts";
 import { auth } from "@/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import FormikInput from "@/components/FormikInput/FormikInput.tsx";
 
 interface SignInFormValues {
   email: string;
@@ -59,25 +60,19 @@ const SignIn = () => {
       <Formik initialValues={initialValues} onSubmit={handleSubmit} validate={handleValidation}>
         {({ errors, touched, isValidating }) => (
           <SignUpForm>
-            <label className="sign-up__label" htmlFor="email">
-              Email
-              <Field className="sign-up__input" name="email" placeholder="Email" />
-              {errors.email && touched.email && (
-                <span className="sign-up__error">{errors.email}</span>
-              )}
-            </label>
-            <label className="sign-up__label" htmlFor="password">
-              Password
-              <Field
-                type="password"
-                className="sign-up__input"
-                name="password"
-                placeholder="Password"
-              />
-              {errors.password && touched.password && (
-                <span className="sign-up__error">{errors.password}</span>
-              )}
-            </label>
+            <FormikInput
+              name="email"
+              labelName="Email"
+              errorMessage={errors.email}
+              touched={touched.email}
+            />
+            <FormikInput
+              name="password"
+              labelName="Password"
+              type="password"
+              errorMessage={errors.password}
+              touched={touched.password}
+            />
             <button disabled={isValidating || isLoading} className="sign-up__button" type="submit">
               Sign In
             </button>
