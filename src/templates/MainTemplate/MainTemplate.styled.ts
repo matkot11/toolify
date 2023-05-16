@@ -14,18 +14,24 @@ export const SnackbarWrapper = styled.button<{ isVisible: boolean; color: "succe
   top: 10px;
   left: 10px;
   right: 10px;
-  background: ${({ theme, color }) => (color === "success" ? theme.color.green : theme.color.red)};
   color: ${({ theme }) => theme.color.white};
-  font-size: ${({ theme }) => theme.fontSize.font20};
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+  background: ${({ theme, color }) => (color === "success" ? theme.color.green : theme.color.red)};
   border-radius: 10px;
   cursor: pointer;
   visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
 
-  .main-template__close-icon {
-    flex-shrink: 0;
-    height: 25px;
-    stroke-width: 1.9px;
+  .main-template {
+    &__text {
+      margin-right: ${({ theme }) => theme.space.space4};
+      font-size: ${({ theme }) => theme.fontSize.font20};
+      font-weight: ${({ theme }) => theme.fontWeight.semiBold};
+    }
+
+    &__close-icon {
+      flex-shrink: 0;
+      height: 25px;
+      stroke-width: 1.9px;
+    }
   }
 
   @media only screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {

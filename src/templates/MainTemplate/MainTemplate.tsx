@@ -47,7 +47,7 @@ const MainTemplate = ({ children }: { children: ReactNode }) => {
           isVisible={!!snackbarMessage}
           onClick={() => animateSnackbarClose(snackbarRef, handleCloseSnackbar)}
           color={snackbarColor}>
-          <span>{snackbarMessage}</span>
+          <span className="main-template__text">{snackbarMessage}</span>
           <CloseIcon className="main-template__close-icon" />
         </SnackbarWrapper>
         {/*)}*/}
