@@ -16,6 +16,8 @@
     ]
   },
   "dependencies": {
+    "@sanity/client": "^6.1.1",
+    "@sanity/eslint-config-studio": "^2.0.1",
     "@types/styled-components": "^5.1.26",
     "firebase": "^9.22.0",
     "formik": "^2.2.9",
