@@ -1,11 +1,10 @@
 import { Formik } from "formik";
 import { SignUpForm, SignUpWrapper } from "@/views/SignUp/SignUp.styled.ts";
-import { auth } from "@/firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormikInput from "@/components/FormikInput/FormikInput.tsx";
 import { useSnackbar } from "@/hooks/useSnackbar.tsx";
+import { useAuth } from "@/hooks/useAuth.tsx";
 
 interface SignUpFormValues {
   fullName: string;
@@ -18,6 +17,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const { dispatchSnackbar } = useSnackbar();
   const [isLoading, setIsLoading] = useState(false);
+  const { signUp } = useAuth();
 
   const initialValues: SignUpFormValues = {
     fullName: "",
@@ -67,24 +67,26 @@ const SignUp = () => {
   };
 
   const handleSubmit = async (values: SignUpFormValues) => {
-    try {
-      setIsLoading(true);
-      await createUserWithEmailAndPassword(auth, values.email, values.password);
+    setIsLoading(true);
 
-      if (auth?.currentUser) {
-        await updateProfile(auth?.currentUser, {
-          displayName: values.fullName
-        });
-      } else {
-        dispatchSnackbar("Could not set the name", "error");
+    const { error } = await signUp({
+      email: values.email,
+      password: values.password,
+      options: {
+        data: {
+          fullName: values.fullName,
+          admin: false
+        }
       }
+    });
 
+    setIsLoading(false);
+
+    if (error) {
+      dispatchSnackbar(error.message, "error");
+    } else {
       dispatchSnackbar("Successfully signed up", "success");
       return navigate("/");
-    } catch (error: any) {
-      dispatchSnackbar(error.message, "error");
-    } finally {
-      setIsLoading(false);
     }
   };
 

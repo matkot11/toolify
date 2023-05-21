@@ -4,10 +4,13 @@ import { theme } from "@/assets/theme/MainTheme.ts";
 import { SnackbarProvider } from "@/hooks/useSnackbar.tsx";
 import { RenderOptions } from "@testing-library/react";
 import { render } from "@testing-library/react";
+import { AuthProvider } from "@/hooks/useAuth.tsx";
 
 const AllTheProviders = ({ children }: { children: ReactNode }) => (
   <ThemeProvider theme={theme}>
-    <SnackbarProvider>{children}</SnackbarProvider>
+    <AuthProvider>
+      <SnackbarProvider>{children}</SnackbarProvider>
+    </AuthProvider>
   </ThemeProvider>
 );
 
