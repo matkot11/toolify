@@ -4,14 +4,14 @@ import HamburgerMenu from "@/components/HamburgerMenu/HamburgerMenu.tsx";
 import { NavLink } from "react-router-dom";
 import { animateDropdownCategories } from "@/assets/animations/categoriesDropdownAnimation.ts";
 import { categories } from "@/data/categories.ts";
-import { auth } from "@/firebase";
-import { signOut } from "firebase/auth";
 import { useSnackbar } from "@/hooks/useSnackbar.tsx";
+import { useAuth } from "@/hooks/useAuth.tsx";
 
 const Navbar = () => {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const { dispatchSnackbar } = useSnackbar();
+  const { user, signOut } = useAuth();
   const categoriesRef = useRef<HTMLUListElement>(null);
   const categoriesButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -41,12 +41,13 @@ const Navbar = () => {
   }, [handleCloseCategoriesOnClickOutside]);
 
   const handleSignOut = async () => {
-    try {
-      await signOut(auth);
+    const { error } = await signOut();
+
+    if (error) {
+      dispatchSnackbar(error.message, "error");
+    } else {
       handleNavbar();
       dispatchSnackbar("Successfully signed out", "success");
-    } catch (error: any) {
-      dispatchSnackbar(error.message, "error");
     }
   };
 
@@ -80,7 +81,7 @@ const Navbar = () => {
               ))}
             </NavbarCategories>
           </li>
-          {auth.currentUser ? (
+          {user ? (
             <li>
               <button onClick={handleSignOut} className="navbar__item">
                 SIGN OUT

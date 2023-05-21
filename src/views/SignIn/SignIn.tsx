@@ -1,11 +1,10 @@
 import { Formik } from "formik";
 import { SignUpForm, SignUpWrapper } from "@/views/SignUp/SignUp.styled.ts";
-import { auth } from "@/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import FormikInput from "@/components/FormikInput/FormikInput.tsx";
 import { useSnackbar } from "@/hooks/useSnackbar.tsx";
+import { useAuth } from "@/hooks/useAuth.tsx";
 
 interface SignInFormValues {
   email: string;
@@ -15,6 +14,7 @@ interface SignInFormValues {
 const SignIn = () => {
   const navigate = useNavigate();
   const { dispatchSnackbar } = useSnackbar();
+  const { signIn } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const initialValues: SignInFormValues = {
@@ -45,16 +45,19 @@ const SignIn = () => {
   };
 
   const handleSubmit = async (values: SignInFormValues) => {
-    try {
-      setIsLoading(true);
-      await signInWithEmailAndPassword(auth, values.email, values.password);
+    setIsLoading(true);
+    const { error } = await signIn({
+      email: values.email,
+      password: values.password
+    });
 
+    setIsLoading(false);
+
+    if (error) {
+      dispatchSnackbar(error.message, "error");
+    } else {
       dispatchSnackbar("Successfully signed in", "success");
       return navigate("/");
-    } catch (error: any) {
-      dispatchSnackbar(error.message, "error");
-    } finally {
-      setIsLoading(false);
     }
   };
 
