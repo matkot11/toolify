@@ -13,9 +13,13 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  
+  @media only screen and (min-width: 1200px) {
+    padding: 0 200px;
+  }
 }
 
-h1 {
+h1, h2, h3 {
   margin: 0;
 }
 
