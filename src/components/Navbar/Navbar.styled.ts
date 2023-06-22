@@ -42,6 +42,7 @@ export const NavbarMenu = styled.div<{ isOpen: boolean }>`
 
       &-categories {
         position: relative;
+        color: ${({ theme }) => theme.color.black};
       }
 
       &-category.active {
@@ -70,4 +71,5 @@ export const NavbarCategories = styled.ul`
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   border: ${({ theme }) => theme.color.black} 1px solid;
   border-radius: 5px;
+  z-index: 1000;
 `;
