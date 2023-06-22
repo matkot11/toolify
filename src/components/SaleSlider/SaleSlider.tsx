@@ -1,12 +1,6 @@
-import {
-  SaleSliderButton,
-  SaleSliderButtons,
-  SaleSliderDetails,
-  SaleSliderWrapper
-} from "@/components/SaleSlider/SaleSlider.styled.ts";
+import { SaleSliderDetails, SaleSliderWrapper } from "@/components/SaleSlider/SaleSlider.styled.ts";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useSnapCarousel } from "react-snap-carousel";
 
 type ProductType = {
   id: number;
@@ -20,7 +14,6 @@ type ProductType = {
 };
 
 const SaleSlider = () => {
-  const { scrollRef, pages, activePageIndex, goTo } = useSnapCarousel();
   const [saleProducts, setSaleProducts] = useState<ProductType[]>([]);
 
   const products = useSelector(
@@ -37,12 +30,12 @@ const SaleSlider = () => {
     setSaleProducts(biggestSales.slice(0, 3));
   }, [products]);
 
-  if (saleProducts.length === 0 && pages.length === 0) {
+  if (saleProducts.length === 0) {
     return <div>Loading...</div>;
   }
 
   return (
-    <SaleSliderWrapper ref={scrollRef}>
+    <SaleSliderWrapper showStatus={false} showThumbs={false} showArrows={false} autoPlay={true}>
       {saleProducts.map((product) => (
         <div key={product.id} className="sale-slider__product">
           <img className="sale-slider__image" src={product.image} alt={product.name} />
@@ -51,15 +44,6 @@ const SaleSlider = () => {
             <span className="sale-slider__price">${product.sale_price}</span>
             <span className="sale-slider__sale-price">${product.price}</span>
           </SaleSliderDetails>
-          <SaleSliderButtons>
-            {pages.map((_, index) => (
-              <SaleSliderButton
-                key={index}
-                onClick={() => goTo(index)}
-                active={activePageIndex === index}
-              />
-            ))}
-          </SaleSliderButtons>
         </div>
       ))}
     </SaleSliderWrapper>
