@@ -1,17 +1,7 @@
 import { SaleSliderDetails, SaleSliderWrapper } from "@/components/SaleSlider/SaleSlider.styled.ts";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
-type ProductType = {
-  id: number;
-  created_at: string;
-  description: string;
-  image: string;
-  name: string;
-  price: number;
-  sale_price: number;
-  category: string;
-};
+import { ProductType } from "@/typings/products.ts";
 
 const SaleSlider = () => {
   const [saleProducts, setSaleProducts] = useState<ProductType[]>([]);
