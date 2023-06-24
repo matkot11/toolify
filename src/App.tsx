@@ -1,6 +1,6 @@
 import MainTemplate from "@/templates/MainTemplate/MainTemplate.tsx";
 import { Route, Routes } from "react-router-dom";
-import Home from "@/views/Home/Home";
+import HomeView from "@/views/HomeView/HomeView.tsx";
 import SignUp from "@/views/SignUp/SignUp.tsx";
 import SignIn from "@/views/SignIn/SignIn.tsx";
 import { useDispatch } from "react-redux";
@@ -30,7 +30,7 @@ const App = () => {
   return (
     <MainTemplate>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomeView />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
       </Routes>
