@@ -1,4 +1,7 @@
-import { SaleSliderDetails, SaleSliderWrapper } from "@/components/SaleSlider/SaleSlider.styled.ts";
+import {
+  SaleSliderDetails,
+  SaleSliderWrapper
+} from "@/views/HomeView/SaleSlider/SaleSlider.styled.ts";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { ProductType } from "@/typings/products.ts";
