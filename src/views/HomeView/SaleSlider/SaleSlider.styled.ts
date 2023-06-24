@@ -8,8 +8,10 @@ export const SaleSliderWrapper = styled(Carousel)`
   .sale-slider {
     &__product {
       position: relative;
+      display: block;
       height: 300px;
       text-align: initial;
+      cursor: pointer;
 
       @media only screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
         height: 500px;
