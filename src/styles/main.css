@@ -1,0 +1,39 @@
+//Colors
+$color-black: #000000;
+$color-white: #ffffff;
+$color-gray: #717171;
+$color-blue: #006cbb;
+$color-green: #1e9559;
+$color-red: #eb2424;
+
+//Font weights
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semiBold: 600;
+$font-weight-bold: 700;
+
+//Font sizes
+$font-size-12: 0.75rem;
+$font-size-14: 0.875rem;
+$font-size-16: 1rem;
+$font-size-18: 1.125rem;
+$font-size-20: 1.25rem;
+$font-size-24: 1.5rem;
+$font-size-40: 2.5rem;
+$font-size-50: 3.125rem;
+
+//Spaces
+$space-2: 0.125rem;
+$space-4: 0.25rem;
+$space-8: 0.5rem;
+$space-12: 0.75rem;
+$space-16: 1rem;
+$space-18: 1.125rem;
+$space-20: 1.25rem;
+$space-24: 1.5rem;
+$space-60: 3.75rem;
+$space-100: 6.25rem;
+
+//Breakpoints
+$breakpoint-tablet: 700px;
+$breakpoint-desktop: 1200px;
