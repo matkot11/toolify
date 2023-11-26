@@ -1,7 +1,13 @@
 <template>
-  <router-view />
+  <v-layout>
+    <Navigation />
+
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-layout>
 </template>
 
-<script lang="ts" setup>
-//
+<script setup lang="ts">
+import Navigation from "@/commons/components/navigation/Navigation.vue";
 </script>

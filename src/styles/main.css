@@ -34,8 +34,4 @@
   --space-24: 1.5rem;
   --space-60: 3.75rem;
   --space-100: 6.25rem;
-
-  /*Breakpoints*/
-  --breakpoint-tablet: 700px;
-  --breakpoint-desktop: 1200px;
 }
