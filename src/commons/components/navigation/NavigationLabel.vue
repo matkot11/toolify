@@ -16,7 +16,12 @@ const fontSize = computed(() => `${size}px`);
 </script>
 
 <template>
-  <v-list-item class="navigation-label" :href="to">
+  <v-list-item
+    class="navigation-label"
+    active-class="navigation-label--active"
+    :to="to"
+    :exact="true"
+  >
     <slot />
   </v-list-item>
 </template>
@@ -27,5 +32,9 @@ const fontSize = computed(() => `${size}px`);
   font-weight: var(--font-weight-semi-bold);
   letter-spacing: 1px;
   text-transform: uppercase;
+
+  &--active {
+    color: var(--color-gray);
+  }
 }
 </style>
