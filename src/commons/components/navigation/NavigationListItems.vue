@@ -5,7 +5,7 @@ import NavigationLabel from "@/commons/components/navigation/NavigationLabel.vue
 
 <template>
   <v-list>
-    <NavigationLabel to="/home">home</NavigationLabel>
+    <NavigationLabel to="/">home</NavigationLabel>
     <NavigationDropdownMenu />
     <NavigationLabel to="/sign-up">sign up</NavigationLabel>
     <NavigationLabel to="/sign-in">sign in</NavigationLabel>

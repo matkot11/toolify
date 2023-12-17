@@ -17,6 +17,7 @@ const drawer = ref(false);
         class="navigation__hamburger-icon"
         @click.stop="drawer = !drawer"
       />
+
       <NavigationListItems class="navigation__list-items" />
     </template>
   </v-app-bar>
