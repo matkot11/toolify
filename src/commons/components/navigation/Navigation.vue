@@ -7,7 +7,7 @@ const drawer = ref(false);
 </script>
 
 <template>
-  <v-app-bar flat>
+  <v-app-bar flat class="navigation">
     <template #prepend>
       <NavigationLogo />
     </template>
@@ -29,6 +29,12 @@ const drawer = ref(false);
 
 <style scoped lang="scss">
 .navigation {
+  :deep(.v-toolbar__content) {
+    @media (min-width: 1400px) {
+      padding: 0 300px;
+    }
+  }
+
   &__hamburger-icon {
     @media (min-width: 700px) {
       display: none;
