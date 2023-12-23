@@ -16,7 +16,7 @@ const emailRules = [
 const password = ref("");
 const passwordRules = [
   (value: string) =>
-    value.length >= 6 || "Password must be at least 8 characters",
+    value.length >= 6 || "Password must be at least 6 characters",
 ];
 
 const repeatPassword = ref("");
@@ -73,7 +73,7 @@ const handleSubmit = async () => {
       />
 
       <template #after-submit>
-        <SwitchAuthenticationView sign-in />
+        <SwitchAuthenticationView sign-up />
       </template>
     </FormContainer>
   </PageContainer>

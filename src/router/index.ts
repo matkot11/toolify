@@ -20,7 +20,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (Home-[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import("@/Authentication/Views/SignUp.vue"),
+        component: () => import("@/Authentication/views/SignUp.vue"),
       },
       {
         path: "/sign-in",
@@ -28,7 +28,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (Home-[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import("@/views/Home.vue"),
+        component: () => import("@/Authentication/views/SignIn.vue"),
       },
     ],
   },

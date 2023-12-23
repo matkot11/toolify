@@ -1,19 +1,19 @@
 <script setup lang="ts">
 defineProps<{
-  signIn: boolean;
+  signUp: boolean;
 }>();
 </script>
 
 <template>
   <span class="switch-authentication-view__info">
-    {{ signIn ? "Already have an account?" : "Do not have an account?" }}
+    {{ signUp ? "Already have an account?" : "Do not have an account?" }}
   </span>
   <v-btn
     class="switch-authentication-view__button"
     size="large"
-    :to="signIn ? '/sign-in' : '/sign-up'"
+    :to="signUp ? '/sign-in' : '/sign-up'"
   >
-    {{ signIn ? "Sign in" : "Sign up" }}
+    {{ signUp ? "Sign in" : "Sign up" }}
   </v-btn>
 </template>
 
