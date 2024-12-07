@@ -21,6 +21,7 @@
     "vuetify": "^3.7.5"
   },
   "devDependencies": {
+    "@mdi/font": "^7.4.47",
     "@playwright/test": "^1.49.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/jsdom": "^21.1.7",
