@@ -4,6 +4,11 @@
 </script>
 
 <template>
-  <CommonsNavbar />
-  <RouterView />
+  <VLayout>
+    <CommonsNavbar />
+
+    <VMain>
+      <RouterView />
+    </VMain>
+  </VLayout>
 </template>
